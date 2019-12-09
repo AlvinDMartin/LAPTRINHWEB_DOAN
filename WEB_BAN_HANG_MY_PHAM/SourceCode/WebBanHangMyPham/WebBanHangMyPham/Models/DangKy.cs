@@ -15,8 +15,11 @@ namespace WebBanHangMyPham.Models
         public string TenDangNhap { get; set; }
         [Required]
         public string Password { get; set; }
+        
         [Required]
+        public string ConfirmPassword { get; set; }
 
+        [Required]
         [Display(Name ="Tên Khách Hàng")]
         public string HoTen { get; set; }
         [Required]

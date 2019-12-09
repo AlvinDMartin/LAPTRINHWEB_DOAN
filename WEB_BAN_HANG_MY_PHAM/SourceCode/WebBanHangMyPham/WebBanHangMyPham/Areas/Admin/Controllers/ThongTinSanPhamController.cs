@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebBanHangMyPham.Data;
 using WebBanHangMyPham.Models;
 using WebBanHangMyPham.Models.ViewModels;
+using WebBanHangMyPham.Utility;
 
 namespace WebBanHangMyPham.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.SuperAdminEndUser)]
     [Area("Admin")]
     public class ThongTinSanPhamController : Controller
     {

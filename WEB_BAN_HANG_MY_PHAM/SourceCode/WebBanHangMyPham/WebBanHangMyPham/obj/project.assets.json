@@ -8434,11 +8434,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Quoc_Dat_CNTT\\5.HK1_Nam3\\Lap_Trinh_Web\\DO_AN\\doanweb\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\WebBanHangMyPham.csproj",
+      "projectUniqueName": "D:\\Quoc_Dat_CNTT\\5.HK1_Nam3\\DOAN_WEB\\LAPTRINHWEB_DOAN\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\WebBanHangMyPham.csproj",
       "projectName": "WebBanHangMyPham",
-      "projectPath": "D:\\Quoc_Dat_CNTT\\5.HK1_Nam3\\Lap_Trinh_Web\\DO_AN\\doanweb\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\WebBanHangMyPham.csproj",
+      "projectPath": "D:\\Quoc_Dat_CNTT\\5.HK1_Nam3\\DOAN_WEB\\LAPTRINHWEB_DOAN\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\WebBanHangMyPham.csproj",
       "packagesPath": "C:\\Users\\hquoc\\.nuget\\packages\\",
-      "outputPath": "D:\\Quoc_Dat_CNTT\\5.HK1_Nam3\\Lap_Trinh_Web\\DO_AN\\doanweb\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\obj\\",
+      "outputPath": "D:\\Quoc_Dat_CNTT\\5.HK1_Nam3\\DOAN_WEB\\LAPTRINHWEB_DOAN\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

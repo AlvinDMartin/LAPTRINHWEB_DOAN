@@ -1,8 +1,79 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model WebBanHangMyPham.Models.ViewModels.IndexViewModel
+
+<br />
+
+@if (Model.Coupon.ToList().Count > 0)
+{
+    <div class="border">
+        <div class="carousel" data-ride="carousel" data-interval="2500">
+            @for (int i = 0; i < Model.Coupon.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    <div class="carousel-item active">
+                        @{
+                            var base64 = Convert.ToBase64String(Model.Coupon.ToList()[i].Picture);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" height="50px" class="d-block w-100" />
+                    </div>
+                }
+                else
+                {
+                    <div class="carousel-item">
+                        @{
+                            var base64 = Convert.ToBase64String(Model.Coupon.ToList()[i].Picture);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" height="50px" class="d-block w-100" />
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
 }
 
-@*<div class="text-lg-left">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>*@
+<br />
+<br />
+<div class="backgroundWhite container">
+
+    <ul id=" menu-filters" class="menu-filter-list list-inline text-center">
+        <li class="active btn btn-secondary ml-1 mr-1" data-filter="menu-restaurant">Xem tất cả</li>
+
+        @foreach (var item in Model.ThongTinLoaiSanPham)
+        {
+            <li class="filter ml-1 mr-1" data-filter=".@item.TenLoaiSanPham.Replace(" ", string.Empty)">@item.TenLoaiSanPham</li>
+        }
+    </ul>
+
+    @foreach (var catogory in Model.ThongTinLoaiSanPham)
+    {
+        <div class="row" id="menu-wrapper">
+            <partial name="_ThumbnailAreaPartial" model="@Model.MenuItem.Where(u=>u.ThongTinLoaiSanPham.TenLoaiSanPham.Equals(catogory.TenLoaiSanPham))" />
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script src="http://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+
+    <script>
+        var post = $('.post');
+
+        function($) {
+            $("#menu-filters li").click(function () {
+                $("#menu-filters li").removeClass('active btn btn-secondary');
+                $(this).addClass('active btn btn-secondary');
+
+                var selectedFilter = $(this).data("filter");
+
+                setTimeout(function () {
+                    $(selectedFilter).slideDown();
+                }, 300);
+            });
+        }) (jQuery);
+    </script>
+}
