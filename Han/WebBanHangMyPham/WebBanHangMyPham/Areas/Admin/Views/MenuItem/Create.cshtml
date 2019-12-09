@@ -1,0 +1,120 @@
+﻿@model WebBanHangMyPham.Models.ViewModels.MenuItemViewModel
+@using WebBanHangMyPham.Extensions
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Tạo Menu Item</h2>
+<br />
+<form method="post" enctype="multipart/form-data">
+    <div class="p-4 border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="MenuItem.Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="MenuItem.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="p-4 border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="MenuItem.MoTa"></label>
+            </div>
+            <div class="col-5">
+                @Html.TextAreaFor(m => m.MenuItem.MoTa)
+            </div>
+            <span asp-validation-for="MenuItem.MoTa" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="p-4 border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="MenuItem.Price"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="MenuItem.Price" class="form-control" />
+            </div>
+            <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="p-4 border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="MenuItem.Image"></label>
+            </div>
+            <div class="col-5">
+                <input type="file" name="files" multiple class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="p-4 border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="MenuItem.LoaiSanPhamId"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.MenuItem.ThongTinLoaiSanPham" id="LoaiSanPhamId" asp-items="@Model.ThongTinLoaiSanPham.ToSelectListItem(Model.MenuItem.LoaiSanPhamId)" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="MenuItem.SanPhamId"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="@Model.MenuItem.ThongTinSanPham" name="SanPhamId" id="SanPhamId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))" class="form-control"></select>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-5 offset-2">
+            <partial name="_CreateAndBackToListButton" />
+        </div>
+    </div>
+
+</form>
+
+@section Scripts
+{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: "lists",
+            menubar: 'file edit format'
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            getThongTinSanPham();
+            $('#LoaiSanPhamId').change(function () {
+                getThongTinSanPham();
+            });
+        });
+        function getThongTinSanPham() {
+            var url = '@Url.Content("~/")' + "Admim/ThongTinSanPham/GetThongTinSanPham";
+            var ddlsource = '#LoaiSanPhamId';
+            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+                var items = '';
+                $('#SanPhamId').empty();
+                $.each(data, function (i, loaisanpham) {
+                    items += "<option value='" + sanpham.value + "'>" + sanpham.text + "</option>";
+                });
+                $('#SanPhamId').items(html);
+            })
+        }
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebBanHangMyPham.Models.ThongTinSanPham>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info"> Danh sách sản phẩm </h2>
+    </div>
+    <div class="col-6 text-right">
+        <partial name="_CreateButtonPartial" />
+    </div>
+</div>
+
+<br />
+<div>
+    @if (Model.Count() > 0)
+    {
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.TenSanPham)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.HangSanXuat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.LoaiSanPhamId)
+            </th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.TenSanPham)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.HangSanXuat)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ThongTinLoaiSanPham.TenLoaiSanPham)
+                </td>
+                <td>
+                    <partial name="_TableButtonPartial" model="item.Id" />
+                </td>
+            </tr>
+
+        }
+
+    </table>
+    } else
+    {
+        <p>Không có sản phẩm...</p>
+    }
+</div>
+

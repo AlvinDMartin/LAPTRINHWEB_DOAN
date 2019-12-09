@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebBanHangMyPham.Models.DangKy>
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <br /><br />
+
+          <div class="row">
+              <div class="col-6">
+                  <h2 class="text-info"> Danh sách đăng kí </h2>
+              </div>
+              <div class="col-6 text-right">
+                  <partial name="_CreateButtonPartial" />
+              </div>
+          </div>
+
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.TenDangNhap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.SDT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DiaChi)
+            </th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.TenDangNhap)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.DiaChi)
+                </td>
+                <td>
+                    <partial name="_TableButtonPartial" model="item.Id" />
+                </td>
+            </tr>
+
+        }
+
+    </table>
+</div>
+

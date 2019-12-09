@@ -1,0 +1,79 @@
+﻿@model WebBanHangMyPham.Models.DangKy
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<h2 class="text-info">Chi tiết đăng ký</h2>
+<br />
+
+<form method="post" asp-action="Details">
+    <div class="p-4 border rounded">
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="TenDangNhap"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="TenDangNhap" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Password"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Password" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="HoTen"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="HoTen" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="SDT"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="SDT" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Email"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Email" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+
+            <div class="col-2">
+                <label asp-for="DiaChi"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="DiaChi" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="form-group row">
+                    <div class="col-6">
+                        <a asp-action="Edit" class="btn btn-info form-control" asp-route-id="@Model.Id">Edit </a>
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+

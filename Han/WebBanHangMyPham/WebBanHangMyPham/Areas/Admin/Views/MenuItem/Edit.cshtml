@@ -1,0 +1,110 @@
+﻿@model WebBanHangMyPham.Models.ViewModels.MenuItemViewModel
+@using WebBanHangMyPham.Extensions
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<br />
+<h2 class="text-info">Chỉnh sửa Menu Item</h2>
+<br />
+<form method="post" enctype="multipart/form-data">
+    <div class="p-4 border backgroundWhite">
+        <input type="hidden" asp-for="MenuItem.Id" />
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="MenuItem.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="MenuItem.Name" class="form-control" />
+                </div>
+                <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+            </div>
+            <div class="p-4 border backgroundWhite">
+                <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MenuItem.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="MenuItem.Name" class="form-control" />
+                    </div>
+                    <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="p-4 border backgroundWhite">
+                <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MenuItem.MoTa"></label>
+                    </div>
+                    <div class="col-8">
+                        @Html.TextAreaFor(m => m.MenuItem.MoTa)
+                    </div>
+                    <span asp-validation-for="MenuItem.MoTa" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="p-4 border backgroundWhite">
+                <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MenuItem.Price"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="MenuItem.Price" class="form-control" />
+                    </div>
+                    <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="p-4 border backgroundWhite">
+                <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MenuItem.Image"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" multiple class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 border backgroundWhite">
+                <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MenuItem.LoaiSanPhamId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="@Model.MenuItem.ThongTinLoaiSanPham" id="LoaiSanPhamId" asp-items="@Model.ThongTinLoaiSanPham.ToSelectListItem(Model.MenuItem.LoaiSanPhamId)" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MenuItem.SanPhamId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="@Model.MenuItem.ThongTinSanPham" name="SanPhamId" id="SanPhamId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 offset-1">
+            <img src="@Model.MenuItem.Image" width="100%" style="border-radius: 5px;border:1px solid #bbb9b9;"/>
+        </div>
+
+        <div class="col-8">
+            <div class="col-8 offset-4">
+                <partial name="_EditAndBackToListButton" model="Model.MenuItem.Id"/>
+            </div>
+        </div>
+    </div>
+    <br />
+
+</form>
+
+@section Scripts
+{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
