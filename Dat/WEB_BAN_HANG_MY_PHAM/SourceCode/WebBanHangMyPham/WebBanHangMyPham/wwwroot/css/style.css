@@ -1,10 +1,5 @@
-/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
-/* Reset Code */
+
+
 body {
     padding: 0;
     margin: 0;
@@ -555,7 +550,7 @@ a.reqe-button {
 
 /* banner */
 .main-banner {
-    background: url(../images/bg1.png) no-repeat center;
+    background: url(../images/bg1.jpg) no-repeat center;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -636,7 +631,7 @@ a.reqe-button {
 
 /* about */
 .about {
-    background: url(../images/bg.jpg) no-repeat center;
+    background: url(../images/bgTest2.jpg) no-repeat center !important;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -819,10 +814,10 @@ h3.title-w3 span {
 
 /* slides images */
 .slide-imaes {
-    background-image: url(../images/bg2.jpg);
+    background-image: url(../images/bg22.jpg);
     background-repeat: repeat-x;
     animation: slideleft 20000s infinite linear;
-    -webkit-animation: slideleft 20000s infinite linear;
+    -webkit-animation: slideleft 20000s infinite linear; 
     background-size: cover;
     min-height: 500px;
 }
@@ -977,7 +972,7 @@ ul.footer-nav-wthree li a:hover{
 
 /* inner pages */
 .main-banner-2 {
-    background: url(../images/banner3.jpg) no-repeat 0px -54px;
+    background: url(../images/banner3test.jpg) no-repeat /*0px -54px*/ !important ;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

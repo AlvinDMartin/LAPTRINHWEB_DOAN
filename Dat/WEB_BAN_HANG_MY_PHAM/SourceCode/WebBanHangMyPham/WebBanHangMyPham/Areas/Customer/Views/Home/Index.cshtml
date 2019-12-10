@@ -61,9 +61,9 @@
             crossorigin="anonymous"></script>
 
     <script>
-        var post = $('.post');
+        //var post = $('.post');
 
-        function($) {
+        function InitLayout() {
             $("#menu-filters li").click(function () {
                 $("#menu-filters li").removeClass('active btn btn-secondary');
                 $(this).addClass('active btn btn-secondary');
@@ -74,6 +74,6 @@
                     $(selectedFilter).slideDown();
                 }, 300);
             });
-        }) (jQuery);
+        };
     </script>
 }
