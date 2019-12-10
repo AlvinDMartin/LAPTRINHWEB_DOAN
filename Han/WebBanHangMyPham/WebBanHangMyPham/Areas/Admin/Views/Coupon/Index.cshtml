@@ -51,8 +51,12 @@
             </td>
 
             <td>
-                <partial name="_TableButtonPartial" model="item.Id" />
+                <a type="button" class="btn btn-primary text-white" asp-action="Edit" asp-route-Id="@item.Id">
+                <i class="fas fa-list-ul"></i></a>
             </td>
+            @*<td>
+                <partial name="_TableButtonPartial" model="item.Id" />
+            </td>*@
         </tr>
             }
         </table>

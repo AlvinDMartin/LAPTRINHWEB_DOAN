@@ -168,12 +168,10 @@ namespace WebBanHangMyPham.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -210,12 +208,10 @@ namespace WebBanHangMyPham.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -223,6 +219,38 @@ namespace WebBanHangMyPham.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("WebBanHangMyPham.Models.Appointments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EmailKhachHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NgayMuaHang")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NguoiBanHangId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SdtKhachHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenKhachHang")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("XacNhan")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NguoiBanHangId");
+
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("WebBanHangMyPham.Models.Coupon", b =>
@@ -349,6 +377,31 @@ namespace WebBanHangMyPham.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ThongTinNhaSanXuat");
+                });
+
+            modelBuilder.Entity("WebBanHangMyPham.Models.ProductsSelectedForAppointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AppointmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SanPhamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppointmentId");
+
+                    b.HasIndex("SanPhamId");
+
+                    b.ToTable("ProductsSelectedForAppointment");
                 });
 
             modelBuilder.Entity("WebBanHangMyPham.Models.ThongTinDonHang", b =>
@@ -504,6 +557,13 @@ namespace WebBanHangMyPham.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WebBanHangMyPham.Models.Appointments", b =>
+                {
+                    b.HasOne("WebBanHangMyPham.Models.ApplicationUser", "NguoiBanHang")
+                        .WithMany()
+                        .HasForeignKey("NguoiBanHangId");
+                });
+
             modelBuilder.Entity("WebBanHangMyPham.Models.MenuItem", b =>
                 {
                     b.HasOne("WebBanHangMyPham.Models.ThongTinLoaiSanPham", "ThongTinLoaiSanPham")
@@ -517,6 +577,19 @@ namespace WebBanHangMyPham.Data.Migrations
                         .HasForeignKey("SanPhamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WebBanHangMyPham.Models.ProductsSelectedForAppointment", b =>
+                {
+                    b.HasOne("WebBanHangMyPham.Models.Appointments", "Appointments")
+                        .WithMany()
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebBanHangMyPham.Models.ThongTinSanPham", "LoaiSanPhamId")
+                        .WithMany()
+                        .HasForeignKey("SanPhamId");
                 });
 
             modelBuilder.Entity("WebBanHangMyPham.Models.ThongTinSanPham", b =>

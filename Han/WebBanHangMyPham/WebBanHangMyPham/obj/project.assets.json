@@ -8434,11 +8434,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Studying\\Năm 3\\Lập trình WEB\\doanweb - Copy (2)\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\WebBanHangMyPham.csproj",
+      "projectUniqueName": "D:\\Studying\\Năm 3\\Lập trình WEB\\WebBanHangMyPham\\WebBanHangMyPham\\WebBanHangMyPham.csproj",
       "projectName": "WebBanHangMyPham",
-      "projectPath": "D:\\Studying\\Năm 3\\Lập trình WEB\\doanweb - Copy (2)\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\WebBanHangMyPham.csproj",
+      "projectPath": "D:\\Studying\\Năm 3\\Lập trình WEB\\WebBanHangMyPham\\WebBanHangMyPham\\WebBanHangMyPham.csproj",
       "packagesPath": "C:\\Users\\giaha\\.nuget\\packages\\",
-      "outputPath": "D:\\Studying\\Năm 3\\Lập trình WEB\\doanweb - Copy (2)\\WEB_BAN_HANG_MY_PHAM\\SourceCode\\WebBanHangMyPham\\WebBanHangMyPham\\obj\\",
+      "outputPath": "D:\\Studying\\Năm 3\\Lập trình WEB\\WebBanHangMyPham\\WebBanHangMyPham\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

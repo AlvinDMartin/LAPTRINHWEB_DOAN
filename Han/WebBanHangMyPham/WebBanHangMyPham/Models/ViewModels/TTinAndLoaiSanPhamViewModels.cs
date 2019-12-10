@@ -10,6 +10,9 @@ namespace WebBanHangMyPham.Models.ViewModels
         public IEnumerable<ThongTinLoaiSanPham> LoaiSPList { get; set; }
         public ThongTinSanPham ThongTinSanPham { get; set; }
         public List<string> SanPhamList { get; set; }
+        public List<int> DonGiaSanPhamList { get; set; }
+        public List<string> HangSanPhamList { get; set; }
         public string StatusMessage { get; set; }
+
     }
 }

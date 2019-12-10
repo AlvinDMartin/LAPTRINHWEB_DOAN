@@ -24,6 +24,6 @@ namespace WebBanHangMyPham.Models
         public int LoaiSanPhamId { get; set; }
         [ForeignKey("LoaiSanPhamId")]
         public virtual ThongTinLoaiSanPham ThongTinLoaiSanPham { get; set; }
-
+        public string Image { get; set; }
     }
 }

@@ -65,7 +65,7 @@ namespace WebBanHangMyPham
             {
                 routes.MapRoute(
                   name: "areas",
-                  template: "{area=Customer}/{controller=Home}/{action=Index}/{id?}"
+                  template: "{area=Admin}/{controller=Coupon}/{action=Index}/{id?}"
                 );
             });
         }
