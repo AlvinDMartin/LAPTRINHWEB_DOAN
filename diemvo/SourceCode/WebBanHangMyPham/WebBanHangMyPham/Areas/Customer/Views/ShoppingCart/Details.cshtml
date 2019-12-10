@@ -1,0 +1,135 @@
+﻿@model WebBanHangMyPham.Models.ProductsSelectedForAppointment
+@using WebBanHangMyPham.Extensions
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutAbout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Item Shopping Cart</h2>
+<br />
+<form method="post" asp-action="Create">
+    <div class="p-4 border backgroundWhite">
+
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+        <div class="col-12 pb-4 e d-md-none">
+            <img src="@Model.MenuItem.Image" width="100%" style="border-radius: 5px;border:1px solid #bbb9b9;" />
+        </div>
+        <div class="col-md-8">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="MenuItem.Name"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="MenuItem.Name" readonly class="text-info font-weight-bold" />
+                </div>
+                <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+            </div>
+            @*<div class="p-4 border backgroundWhite">
+            <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+            <div class="form-group row">
+                <div class="col-md--4">
+                    <label asp-for="MenuItem.Name"></label>
+                </div>
+                <div class="col-md--8">
+                    <input asp-for="MenuItem.Name" class="text-info font-weight-bold" />
+                </div>
+                <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+            </div>*@
+        </div>
+        <div class="p-4 border backgroundWhite">
+            <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="MenuItem.MoTa"></label>
+                </div>
+                <div class="col-md--8">
+                    <div class="border p-2">
+                        @Html.Raw(Model.MenuItem.MoTa)
+                    </div>
+                </div>
+                <span asp-validation-for="MenuItem.MoTa" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="p-4 border backgroundWhite">
+            <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="MenuItem.Price"></label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="MenuItem.Price" readonly class="text-info font-weight-bold" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="p-4 border backgroundWhite">
+            <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="MenuItem.LoaiSanPhamId"></label>
+                </div>
+                <input asp-for="MenuItem.ThongTinLoaiSanPham.TenLoaiSanPham" readonly class="text-info font-weight-bold" />
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="MenuItem.SanPhamId"></label>
+                </div>
+                <div class="col-md-8">
+                    <select asp-for="@Model.MenuItem.ThongTinSanPham" name="SanPhamId" id="SanPhamId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))" class="text-info font-weight-bold"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+                    <a asp-action="Index" class="btn btn-success text-info font-weight-bold">Back to List</a>
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" value="Add to Cart" class="btn btn-primary text-info font-weight-bold">Add to Cart</button>
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="count"></label>
+                </div>
+                <input asp-for="count" readonly class="text-info font-weight-bold" />
+                <span asp-validation-for="count" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+                    <a asp-action="Index" class="btn btn-success text-info font-weight-bold">Back to List</a>
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" value="Add to Cart" class="btn btn-primary text-info font-weight-bold">Add to Cart</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 offset-1 d-none d-md-block">
+        <img src="@Model.MenuItem.Image" width="100%" style="border-radius: 5px;border:1px solid #bbb9b9;" />
+    </div>
+
+
+    </div>
+    @*<br />*@
+    <input asp-for="MenuItemId" hidden />
+
+</form>
+
+@section Scripts
+{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

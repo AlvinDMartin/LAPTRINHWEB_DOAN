@@ -1,0 +1,36 @@
+﻿@model WebBanHangMyPham.Models.ThongTinLoaiSanPham
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Thêm loại sản phẩm mới</h2>
+<br />
+<form method="post" asp-action="Create">
+    <div class="p-4 border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="TenLoaiSanPham"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="TenLoaiSanPham" class="form-control" />
+            </div>
+            <span asp-validation-for="TenLoaiSanPham" class="text-danger"></span>
+        </div>      
+    </div>
+    <br />
+    <div class="form-group row">
+        <div class="col-5 offset-2">
+            <partial name="_CreateAndBackToListButton" />
+        </div>
+    </div>
+
+</form>
+
+@section Scripts
+{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
