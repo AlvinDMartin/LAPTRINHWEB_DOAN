@@ -64,7 +64,7 @@
                 <label asp-for="MenuItem.LoaiSanPhamId"></label>
             </div>
             <div class="col-5">
-                <select asp-for="@Model.MenuItem.ThongTinLoaiSanPham" id="LoaiSanPhamId" asp-items="@Model.ThongTinLoaiSanPham.ToSelectListItem(Model.MenuItem.LoaiSanPhamId)" class="form-control"></select>
+                <select asp-for="@Model.MenuItem.LoaiSanPhamId" id="LoaiSanPhamId" asp-items="@Model.ThongTinLoaiSanPham.ToSelectListItem(Model.MenuItem.LoaiSanPhamId)" class="form-control"></select>
             </div>
         </div>
         <div class="form-group row">
@@ -72,7 +72,7 @@
                 <label asp-for="MenuItem.SanPhamId"></label>
             </div>
             <div class="col-5">
-                <select asp-for="@Model.MenuItem.ThongTinSanPham" name="SanPhamId" id="SanPhamId" asp-items="@(new SelectList(string.Empty, "Id", "TenSanPham"))" class="form-control"></select>
+                <select asp-for="@Model.MenuItem.SanPhamId" name="sanPhamId" id="SanPhamId" asp-items="@(new SelectList(string.Empty, "Id", "TenSanPham"))" class="form-control"></select>
             </div>
         </div>
     </div>
@@ -103,15 +103,15 @@
             });
         });
         function getThongTinSanPham() {
-            var url = '@Url.Content("~/")' + "Admim/ThongTinSanPham/GetThongTinSanPham";
+            var url = '@Url.Content("~/")' + "Admin/ThongTinSanPham/GetThongTinSanPham";
             var ddlsource = '#LoaiSanPhamId';
             $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
                 var items = '';
                 $('#SanPhamId').empty();
                 $.each(data, function (i, loaisanpham) {
-                    items += "<option value='" + sanpham.value + "'>" + sanpham.text + "</option>";
+                    items += "<option value='" + loaisanpham.value + "'>" + loaisanpham.text + "</option>";
                 });
-                $('#SanPhamId').items(html);
+                $('#SanPhamId').html(items);
             })
         }
     </script>

@@ -31,8 +31,12 @@
                     @Html.DisplayNameFor(m => m.MinimumAmount)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(m => m.Picture)
+                </th>
+                <th>
                     @Html.DisplayNameFor(m => m.IsActive)
                 </th>
+
             </tr>
             @foreach (var item in Model)
             {
@@ -47,9 +51,17 @@
                 @Html.DisplayFor(m => item.MinimumAmount)
             </td>
             <td>
+                @Html.DisplayFor(m => item.Picture)
+            </td>
+            <td>
                 @Html.DisplayFor(m => item.IsActive)
             </td>
 
+            <td>
+                <a type="button" class="btn btn-primary text-white" asp-action="Edit" asp-route-Id="@item.Id">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+            </td>
             <td>
                 <partial name="_TableButtonPartial" model="item.Id" />
             </td>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -8,56 +7,47 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebBanHangMyPham.Data;
 using WebBanHangMyPham.Models;
+using WebBanHangMyPham.Models.ViewModels;
 using WebBanHangMyPham.Utility;
 
 namespace WebBanHangMyPham.Areas.Admin.Controllers
 {
     [Authorize(Roles = SD.SuperAdminEndUser)]
     [Area("Admin")]
-    public class CouponController : Controller
+    public class ProducersController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public CouponController(ApplicationDbContext db)
+
+        public ProducersController(ApplicationDbContext db)
         {
             _db = db;
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _db.Coupon.ToListAsync());
+            return View(await _db.ThongTinNhaSanXuat.ToListAsync());
         }
 
-        //GET - CREATE
+        //-----------------------------------------------CREATE--------------------------------------
+
+        //GET Creat Acgtion Method
         public IActionResult Create()
         {
             return View();
         }
 
-        [HttpPost,ActionName("Create")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatePOST(Coupon coupons)
+        public async Task<IActionResult> Create(NhaSanXuat thongtinnhasanxuat)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var files = HttpContext.Request.Form.Files;
-                if (files.Count > 0)
-                {
-                    byte[] p1 = null;
-                    using (var fs1 = files[0].OpenReadStream())
-                    {
-                        using (var ms1 = new MemoryStream())
-                        {
-                            fs1.CopyTo(ms1);
-                            p1 = ms1.ToArray();
-                        }
-                    }
-                    //coupons.Picture = p1;
-                }
-                _db.Coupon.Add(coupons);
+                _db.ThongTinNhaSanXuat.Add(thongtinnhasanxuat);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(coupons);
+            return View(thongtinnhasanxuat);
         }
+
         //-----------------------------------------------EDIT--------------------------------------
         //GET - Edit
         public async Task<IActionResult> Edit(int? id)
@@ -66,27 +56,27 @@ namespace WebBanHangMyPham.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var coupon = await _db.Coupon.FindAsync(id);
-            if (coupon == null)
+            var thongtinnhasanxuat = await _db.ThongTinNhaSanXuat.FindAsync(id);
+            if (thongtinnhasanxuat == null)
             {
                 return NotFound();
             }
 
-            return View(coupon);
+            return View(thongtinnhasanxuat);
         }
         //POST Edit action Method
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Coupon coupon)
+        public async Task<IActionResult> Edit(NhaSanXuat thongtinnhasanxuat)
         {
             if (ModelState.IsValid)
             {
-                _db.Update(coupon);
+                _db.Update(thongtinnhasanxuat);
                 await _db.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
-            return View(coupon);
+            return View(thongtinnhasanxuat);
         }
         //-----------------------------------------------CREATE--------------------------------------
         //GET - Delete
@@ -96,25 +86,25 @@ namespace WebBanHangMyPham.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var coupon = await _db.Coupon.FindAsync(id);
-            if (coupon == null)
+            var nhasx = await _db.ThongTinNhaSanXuat.FindAsync(id);
+            if (nhasx == null)
             {
                 return NotFound();
             }
 
-            return View(coupon);
+            return View(nhasx);
         }
         //POST Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteComfirmed(int? id)
         {
-            var coupon = await _db.Coupon.FindAsync(id);
-            if (coupon == null)
+            var nhasx = await _db.ThongTinNhaSanXuat.FindAsync(id);
+            if (nhasx == null)
             {
                 return View();
             }
-            _db.Coupon.Remove(coupon);
+            _db.ThongTinNhaSanXuat.Remove(nhasx);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
