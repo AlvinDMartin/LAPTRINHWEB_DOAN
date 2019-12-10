@@ -17,6 +17,10 @@ namespace WebBanHangMyPham.Models
         [Required]
         [Display(Name = "Giá")]
         public int DonGia { get; set; }
+        //[Required]
+        //[Display(Name = "Hình ảnh")]
+        //public string Image { get; set; }
+
         [Required]
         [Display(Name = "Hãng sản xuất")]
         public string HangSanXuat { get; set; }

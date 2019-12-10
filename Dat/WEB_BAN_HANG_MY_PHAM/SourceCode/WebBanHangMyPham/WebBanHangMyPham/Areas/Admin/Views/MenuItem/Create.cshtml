@@ -72,7 +72,7 @@
                 <label asp-for="MenuItem.SanPhamId"></label>
             </div>
             <div class="col-5">
-                <select asp-for="@Model.MenuItem.ThongTinSanPham" name="SanPhamId" id="SanPhamId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))" class="form-control"></select>
+                <select asp-for="@Model.MenuItem.ThongTinSanPham" name="SanPhamId" id="SanPhamId" asp-items="@(new SelectList(string.Empty, "Id", "TenSanPham"))" class="form-control"></select>
             </div>
         </div>
     </div>
