@@ -1,0 +1,141 @@
+﻿@model WebBanHangMyPham.Models.ViewModels.AppointmentDetailsViewModel
+@using WebBanHangMyPham.Extensions
+@using WebBanHangMyPham.Utility
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info"> Chỉnh sửa Appointment </h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="p-4 border rounded row">
+        <input hidden asp-for="Appointment.Id" />
+        <div asp-validation-summary="ModelOnly" class="text=danger"></div>
+        <div class="col-6">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Appointment.TenKhachHang"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Appointment.TenKhachHang" class="form-control" />
+                </div>
+                <span asp-validation-for="Appointment.TenKhachHang" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Appointment.EmailKhachHang"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Appointment.EmailKhachHang" class="form-control" />
+                </div>
+                <span asp-validation-for="Appointment.EmailKhachHang" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Appointment.NgayMuaHang"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Appointment.NgayMuaHang" id="datepicker" type="text" class="form-control" />
+                </div>
+                <span asp-validation-for="Appointment.NgayMuaHang" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Appointment.GioMuaHang"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Appointment.GioMuaHang" id="timepicker" type="text" class="timepicker form-control" />
+                </div>
+                <span asp-validation-for="Appointment.GioMuaHang" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Appointment.SdtKhachHang"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Appointment.SdtKhachHang" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Appointment.NguoiBanHang"></label>
+                </div>
+                <div class="col-8">
+                    @if (User.IsInRole(SD.AdminEndUser))
+                    {
+                        <input asp-for="@Model.Appointment.NguoiBanHang.Name" readonly class="form-control" />
+                        <input asp-for="@Model.Appointment.NguoiBanHangId" hidden />
+                    }
+                    else
+                    {
+                        <select asp-for="@Model.Appointment.NguoiBanHangId" asp-items="Model.NguoiBanHang.ToSelectListItemString(Model.Appointment.NguoiBanHangId)" class="form-control"></select>
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Appointment.XacNhan"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Appointment.XacNhan" />
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            @* Partial View *@
+            <partial name="~/Views/Shared/_AppointmentProductDetails.cshtml" model="Model.SanPham"/> 
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-5 offset-2">
+            <partial name="_UpdateAndBackToListButton" />
+        </div>
+    </div>
+</form>
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: '10',
+        maxTime: '3:00pm',
+        startTime: '10:00',
+        dynamic: true,
+        dropdown: true,
+        scrollbar: true
+    });
+
+    $(function () {
+        $("#datepicker").datepicker({
+            minDate: +1, maxDate: "+3M"
+        });
+    });
+
+        $(document).ready(function () {
+            var appointmentTime = document.getElementById('datepicker').value;
+            var splitData = "";
+            if (appointmentTime.indexOf(" ") > 0) {
+                splitData = appointmentTime.split(" ");
+            }
+            else {
+                splitData = appointmentTime.split("T");
+            }
+            var time = splitData[1].substring(0, 5);
+            if (time.slice(-1) == ":") {
+                time = time.substring(0, time.length - 1);
+
+            }
+            var amPmTime = splitData[2];
+            $('#datepicker').attr('value', spliData[0]);
+            $('#timepicker').attr('value', time + ' ' + amPmTime);
+        });
+
+    </script>
+}

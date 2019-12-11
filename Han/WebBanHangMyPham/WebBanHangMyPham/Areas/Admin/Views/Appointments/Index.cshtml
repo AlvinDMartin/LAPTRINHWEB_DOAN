@@ -6,7 +6,59 @@
     <bt />
     
     <div style="height:150px; background-color:aliceblue" class="container">
-        @*We will add search criteria*@
+        <div class="col-12">
+            <div class="row" style="padding-top:10px">
+                <div class="col-2">
+                    Tên khách hàng
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-2">
+
+                </div>
+                <div class="col-2">
+                    Email
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchEmail", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="row" style="padding-top:10px">
+                <div class="col-2">
+                    Số điện thoại
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchPhone", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-2">
+
+                </div>
+                <div class="col-2">
+                    Ngày mua hàng
+                </div>
+                <div class="col-3">
+                    @Html.Editor("searchDate", new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top:10px">
+            <div class="col-2">
+            </div>
+            <div class="col-3">
+            </div>
+            <div class="col-2">
+            </div>
+            <div class="col-2">
+            </div>
+            <div class="col-3">
+                <button type="submit" name="submit" value="Search" class="btn btn-primary form-control">
+                    <i class="fa fast-search "></i> Search
+                </button>
+
+            </div>
+        </div>
+
     </div>
 
     <br /><br />
@@ -62,3 +114,24 @@
         }
     </div>
 </form>
+
+@section Scripts{ 
+<script>
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 30,
+        minTime: '10',
+        maxTime: '3:00pm',
+        startTime: '10:00',
+        dynamic: true,
+        dropdown: true,
+        scrollbar: true
+    });
+
+    $(function () {
+        $("#datepicker").datepicker({
+            minDate: +1, maxDate: "+3M"
+        });
+    });
+</script>
+}

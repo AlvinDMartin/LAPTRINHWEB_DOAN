@@ -18,5 +18,20 @@ namespace WebBanHangMyPham.Extensions
                        Selected = item.GetProperTyValue("Id").Equals(selectedValue.ToString())
                    };
         }
+        public static IEnumerable<SelectListItem> ToSelectListItemString<T>(this IEnumerable<T> items, string selectedValue)
+        {
+            if(selectedValue==null)
+            {
+                selectedValue = "";
+            }
+            return from item in items
+                   select new SelectListItem
+                   {
+                       Text = item.GetProperTyValue("TenLoaiSanPham"),
+                       Value = item.GetProperTyValue("Id"),
+                       Selected = item.GetProperTyValue("Id").Equals(selectedValue.ToString())
+                   };
+        }
+
     }
 }

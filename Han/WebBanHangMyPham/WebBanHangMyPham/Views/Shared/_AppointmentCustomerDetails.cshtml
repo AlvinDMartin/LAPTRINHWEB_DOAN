@@ -1,0 +1,25 @@
+﻿@model WebBanHangMyPham.Models.Appointments
+
+<h4 class="text-success">Chi tiết Appointment</h4>
+
+<div style="height:100px;background-color:aliceblue" class="container border">
+    <div class="col-12">
+        <div class="row" style="padding-top:10px">
+            <div class="col-2">
+                Full Name
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.TenKhachHang" readonly class="form-control"/>
+            </div>
+            <div class="col-2">
+
+            </div>
+            <div class="col-2">
+                Email
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.EmailKhachHang" readonly class="form-control"/>
+            </div>
+        </div>
+    </div>
+</div>
