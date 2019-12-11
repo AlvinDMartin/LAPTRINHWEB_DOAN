@@ -32,7 +32,7 @@ namespace WebBanHangMyPham.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost,ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePOST(Coupon coupons)
         {
@@ -50,13 +50,73 @@ namespace WebBanHangMyPham.Areas.Admin.Controllers
                             p1 = ms1.ToArray();
                         }
                     }
-                    coupons.Picture = p1;
+                    //coupons.Picture = p1;
                 }
                 _db.Coupon.Add(coupons);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(coupons);
+        }
+        //-----------------------------------------------EDIT--------------------------------------
+        //GET - Edit
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var coupon = await _db.Coupon.FindAsync(id);
+            if (coupon == null)
+            {
+                return NotFound();
+            }
+
+            return View(coupon);
+        }
+        //POST Edit action Method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Coupon coupon)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Update(coupon);
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(coupon);
+        }
+        //-----------------------------------------------CREATE--------------------------------------
+        //GET - Delete
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var coupon = await _db.Coupon.FindAsync(id);
+            if (coupon == null)
+            {
+                return NotFound();
+            }
+
+            return View(coupon);
+        }
+        //POST Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteComfirmed(int? id)
+        {
+            var coupon = await _db.Coupon.FindAsync(id);
+            if (coupon == null)
+            {
+                return View();
+            }
+            _db.Coupon.Remove(coupon);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

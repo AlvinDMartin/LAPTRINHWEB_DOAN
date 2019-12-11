@@ -238,6 +238,9 @@ namespace WebBanHangMyPham.Data.Migrations
                     b.Property<DateTime>("NgayMuaHang")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("NguoiBanHangId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("SdtKhachHang")
                         .HasColumnType("nvarchar(max)");
 
@@ -248,6 +251,8 @@ namespace WebBanHangMyPham.Data.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NguoiBanHangId");
 
                     b.ToTable("Appointments");
                 });
@@ -554,6 +559,13 @@ namespace WebBanHangMyPham.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WebBanHangMyPham.Models.Appointments", b =>
+                {
+                    b.HasOne("WebBanHangMyPham.Models.ApplicationUser", "NguoiBanHang")
+                        .WithMany()
+                        .HasForeignKey("NguoiBanHangId");
                 });
 
             modelBuilder.Entity("WebBanHangMyPham.Models.MenuItem", b =>

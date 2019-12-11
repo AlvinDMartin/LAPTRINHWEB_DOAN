@@ -21,7 +21,7 @@ namespace WebBanHangMyPham.Areas.Admin.Controllers
 
         [BindProperty]
         public MenuItemViewModel MenuItemVM { get; set; }
-        public string SanPhamId { get; private set; }
+        public string SanPhamId { get; set; }
 
         public MenuItemController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment)
         {
